@@ -1,16 +1,47 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import Modal from '../components/Modal';
+
+import React, { Component } from 'react';
+
+export class App extends Component {
+  state = {
+    showModal: false,
+  };
+  //метод інверсія, показуємо пбо не показуємо модальне вікно
+  // toggleModal = ({ showModal }) => {
+  //   this.setState(state => ({
+  //     showModal: !showModal,
+  //   }));
+  // };
+  toggleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+    }));
+  };
+  render() {
+    const { showModal } = this.state;
+    return (
+      //1.якщо showModal = true, то рендеримо модалку;
+      //2. створюжмо кнопку і вішаємо на неї метод відкриття модалки toggleModal;
+      //3.додаємо контент модалки як children а рендері з файла модалки
+      // так ми маємо компонент, який ми можемо перевикористати задяки {this.props.children}
+      <div>
+        <button type="button" onClick={this.toggleModal}>
+          Відкрити
+        </button>
+
+        {showModal && (
+          <Modal>
+            <h1>Раді вас вітати!</h1>
+            <p>Все, що ви бачите в модальці - дані this.props.children</p>
+
+            <button type="button" onClick={this.toggleModal}>
+              Закрити
+            </button>
+          </Modal>
+        )}
+      </div>
+    );
+  }
+}
+
+export default App;
