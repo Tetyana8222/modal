@@ -1,5 +1,5 @@
 import Modal from '../components/Modal';
-import Clock from '../components/Clock';
+
 
 import React, { Component } from 'react';
 
