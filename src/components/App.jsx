@@ -7,16 +7,22 @@ export class App extends Component {
     showModal: false,
   };
   //метод інверсія, показуємо пбо не показуємо модальне вікно
-  // toggleModal = ({ showModal }) => {
-  //   this.setState(state => ({
-  //     showModal: !showModal,
-  //   }));
-  // };
-  toggleModal = () => {
+  // чому не спрацьовує через деструктуризацію?
+  toggleModal = ({ showModal }) => {
+    console.log(showModal);
     this.setState(state => ({
-      showModal: !state.showModal,
+      showModal: !showModal,
     }));
   };
+  // toggleModal = () => {
+  //   this.setState({ showModal: !this.state.showModal });
+  // };
+  // toggleModal = () => {
+  //   this.setState(state => ({
+  //     showModal: !state.showModal,
+  //   }));
+  // };
+
   render() {
     const { showModal } = this.state;
     return (
@@ -30,10 +36,9 @@ export class App extends Component {
         </button>
 
         {showModal && (
-          <Modal>
+          <Modal onClose={this.toggleModal}>
             <h1>Раді вас вітати!</h1>
             <p>Все, що ви бачите в модальці - дані this.props.children</p>
-
             <button type="button" onClick={this.toggleModal}>
               Закрити
             </button>
