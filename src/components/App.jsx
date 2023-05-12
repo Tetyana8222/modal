@@ -8,20 +8,20 @@ export class App extends Component {
   };
   //метод інверсія, показуємо пбо не показуємо модальне вікно
   // чому не спрацьовує через деструктуризацію?
-  toggleModal = ({ showModal }) => {
-    console.log(showModal);
-    this.setState(state => ({
-      showModal: !showModal,
-    }));
-  };
+  // toggleModal = ({ showModal }) => {
+  //   console.log(showModal);
+  //   this.setState(state => ({
+  //     showModal: !showModal,
+  //   }));
+  // };
   // toggleModal = () => {
   //   this.setState({ showModal: !this.state.showModal });
   // };
-  // toggleModal = () => {
-  //   this.setState(state => ({
-  //     showModal: !state.showModal,
-  //   }));
-  // };
+  toggleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+    }));
+  };
 
   render() {
     const { showModal } = this.state;
